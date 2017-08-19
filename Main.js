@@ -9,6 +9,7 @@ var target;
 var maxMutated = 5;
 var myFont;
 var Obstacles = [];
+var points = []; 
 
 function preload() {
   myFont = loadFont('VT323.ttf');
@@ -19,8 +20,10 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   routeCount = floor(width / Mag * 1.5);
   spawnPoint = new Point(20, height/2);
+  points.push(spawnPoint);
   target = new Point(width-10, height/2);
-  
+  points.push(target);
+  console.log(points);
   background(100);
   noStroke();
   fill(255, 70);
@@ -62,7 +65,9 @@ function draw() {
   for (i=0; i<Obstacles.length; i++) {
     Obstacles[i].show();
   }
-  
+  for (i=0; i<points.length; i++) {
+    if(points[i].dragged) {points[i].pos.x = mouseX; points[i].pos.y = mouseY;}
+  }
   //finding best fitness with route killing everithing and respawning
   if (rockets.every(IsDead)) {
     findBest();
@@ -70,7 +75,7 @@ function draw() {
   }
   
   //moving start and finish
-  if (mouseIsPressed){
+  /*if (mouseIsPressed){
     if (dist(mouseX, mouseY, target.pos.x, target.pos.y) < target.d/2) {
       target.pos.x = mouseX;
       target.pos.y = mouseY;
@@ -80,5 +85,5 @@ function draw() {
       spawnPoint.pos.y = mouseY;
     }
     bf = 0;
-  }
+  }*/
 }

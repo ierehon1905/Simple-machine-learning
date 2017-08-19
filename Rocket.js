@@ -18,7 +18,6 @@ function Rocket(a){
     for(var i = 0, index = floor(random(a.length - maxMutated)); i< maxMutated- floor(random(maxMutated)); i++, index++) {
       //console.log(this.route[i]);
       this.route[index] = p5.Vector.random2D().setMag(Mag);  //this.route[i].rotate(0.2*pow(-1, i));
-      console.log("jhhh");
     }
   }
   
